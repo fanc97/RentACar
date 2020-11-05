@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="">Rent Car</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="">Home <span class="sr-only">(current)</span></a>
+        </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="" routerLink="/signup" *ngIf="!currentStatus.status">Sign in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="" routerLink="/login" *ngIf="!currentStatus.status">Log in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="" routerLink="/admindashboard" *ngIf="loginuser.user.userAuthority[0].authority=='ROLE_ADMIN'">Dashboard</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="" routerLink="/login" *ngIf="currentStatus.status" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <section style="height: 120px;">
+    <form #carForm="ngForm" style="margin-top: 50px;padding-left: 5px;">
+        <div class="form-row">
+            <div class="col" id="row">
+                <p style="margin-bottom: 1px;">Tip</p><select class="form-control" [(ngModel)]="carSearch.tip" name="tip"><optgroup label="tip"><option value="" selected=""></option><option *ngFor="let bT of bodyTypes" [value]="bT.name">{{bT.name}}</option></optgroup></select></div>
+            <div
+                class="col" id="row">
+                <p style="margin-bottom: 1px;">Marka</p><select class="form-control" [(ngModel)]="carSearch.name" name="name"><optgroup label="marka"><option value="" selected=""></option><option *ngFor="let m of carNames" [value]="m.name" #name>{{m.name}}</option></optgroup></select></div>
+        <div
+            class="col" id="row">
+            <p style="margin-bottom: 1px;">Model</p><input class="form-control" [(ngModel)]="carSearch.model" name="model" type="text"></div>
+            <div class="col" id="row">
+                <p class="price" style="margin-bottom: 1px;">Cena od</p><input class="form-control price" type="text" [(ngModel)]="carSearch.cenaOd" name="cenaOd" ></div>
+            <div class="col price" id="row">
+                <p class="price" style="margin-bottom: 1px;">Cena do</p><input class="form-control price" type="text" [(ngModel)]="carSearch.cenaDo" name="cenaDo" ></div>
+            <div class="col text-left align-self-end"><button class="btn btn-primary" type="button" style="background-color: rgb(136,189,247);" (click)="searchCars(carSearch,carForm)">Pretrazi</button></div>
+            </div>
+    </form>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4" *ngFor="let c of cars">
+            <div class="card" id="CarVIew">
+                <div class="card-body"><img style="width: 278px;height: 182px;margin-bottom: 5px;" src="data:image/gif;base64,{{c.photo}}">
+                    <h4 class="card-title" id="Name">{{c.carNameName}}</h4>
+                    <p class="card-text" style="font-size: 12px;min-height: 80px;max-height: 80px;">{{c.description}}</p>
+                    <section class="d-flex justify-content-between"><button class="btn btn-primary" type="button" style="background-color: rgb(119,184,255);" [routerLink]="['/detalji',c.id]">Details</button><button [routerLink]="['/iznajmi',c.id]" class="btn btn-primary" type="button" style="background-color: rgb(78,255,34);" [routerLink]="['/izmajmi',c.id]">Iznajmi(${{c.pricePerDay}})</button></section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="text-center">
+    <nav class="d-flex justify-content-around">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+            <li class="page-item" *ngFor="let p of totalPageNumber;let i=index"><a class="page-link" (click)="setPage(i,$event)" href="#">{{i}}</a></li>
+            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+        </ul>
+    </nav>
+</section>

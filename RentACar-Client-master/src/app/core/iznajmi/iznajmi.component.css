@@ -1,0 +1,25 @@
+.img-date-picker{
+    display: flex;
+    height: 350px;
+}
+.input-field{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 200px;
+}
+.date-picker{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 30px;
+    width: 100%;
+}
+.cena-button{
+    width: 500px;
+    display:flex;
+    justify-content: space-between;
+}
+.date-picker .form-inline div input{
+    width: 800px;    
+}

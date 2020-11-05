@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="">Rent Car</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="">Home <span class="sr-only">(current)</span></a>
+        </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="" routerLink="/signup" *ngIf="!currentStatus.status">Sign in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="" routerLink="/login" *ngIf="!currentStatus.status">Log in</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="" routerLink="/login" *ngIf="currentStatus.status" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <section>
+    <div class="d-flex justify-content-between" style="margin: 10px 0;">
+        <div>
+            <h1>{{car.carNameName}} {{car.modelName}} {{car.engineVolume}}Vol</h1>
+        </div>
+        <div class="d-flex" style="margin-right: 10px;">
+            <h1 style="margin-right: 20px;">Cena: {{car.pricePerDay}}</h1><button class="btn btn-primary iznajmi" type="button" style="background-color: rgb(121, 145, 28);height: 30px;margin: 10px 0;align-content: center;padding-bottom: 30px;" [routerLink]="['/iznajmi',car.id]">Iznajmi</button></div>
+    </div><img style="width: 100%;height: 400px;" src="data:image/gif;base64,{{car.photo}}">
+    <p style="width: 100%;height: 120px;">{{car.description}}</p>
+    <h1>Detalji</h1>
+    <hr>
+    <div class="table-responsive table-borderless">
+        <table class="table table-bordered" style="border: none;width: 70%;">
+            
+            <tbody>
+                <tr>
+                    <td>Tip: {{car.bodyTypeName}}</td>
+                    <td>Proizvodjac: {{car.manufacturerName}}</td>
+                    <td>Model: {{car.modelName}}</td>
+                </tr>
+                <tr>
+                    <td>Zapremina motora: {{car.engineVolume}}</td>
+                    <td>Snaga motora: {{car.enginePower}}</td>
+                    <td>Menjac: {{car.transmissionTypeName}}</td>
+                </tr>
+                <tr>
+                    <td>Broj vrata: {{car.doors}}</td>
+                    <td>Broj sedista: {{car.seats}}</td>
+                    <td>Pogon: {{car.driveTypeName}}</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Gorivo: {{car.fuelTypeName}}</td>
+                  <td>Broj brzina: {{car.gearNumber}}</td>
+                  
+              </tr>
+            </tbody>
+        </table>
+    </div>
+

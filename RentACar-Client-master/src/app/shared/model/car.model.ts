@@ -1,0 +1,23 @@
+export class Car{
+    id:number;
+    name:string;
+    description:string;
+    engineVolume:number;
+    enginePower:number;
+    seats:number;
+    doors:number;
+    pricePerDay:number;
+    bodyTypeId:number;
+    bodyTypeName:string;
+    manufacturerId:number;
+    manufacturerName;
+    modelId:number;
+    modelName:string;
+    transmissionTypeId:number;
+    transmissionTypeName:string;
+    gearNumber:number;
+    driveTypeId:number;
+    driveTypeName:string;
+    fuelTypeId:number;
+    fuelTypeName:string;
+}

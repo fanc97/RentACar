@@ -1,0 +1,91 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="">Rent Car</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="">Home <span class="sr-only">(current)</span></a>
+        </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="" routerLink="/signup" *ngIf="!currentStatus.status">Sign in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="" routerLink="/login" *ngIf="!currentStatus.status">Log in</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="" routerLink="/login" *ngIf="currentStatus.status" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<section>
+    <div class="d-flex justify-content-between" style="margin: 10px 0;">
+        <div>
+            <h1>{{car.carNameName}} {{car.modelName}} {{car.engineVolume}}Vol</h1>
+        </div>
+        
+    </div>
+    <div class="img-date-picker">
+    <img src="" alt="" style="max-height: 350px;min-width: 350px;min-height: 350px;max-width: 350px;" src="data:image/gif;base64,{{car.photo}}">
+    
+        <div class="date-picker">
+            <form class="form-inline">
+                <div class="form-group input-field">
+                  <div class="input-group">
+                      <label for="od">Od:</label>
+                    <input class="form-control" placeholder="yyyy-mm-dd"
+                           name="dp" [(ngModel)]="fromDate" ngbDatepicker #d="ngbDatepicker">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                      <label for="do">Do:</label>
+                    <input class="form-control" placeholder="yyyy-mm-dd"
+                           name="dpp" [(ngModel)]="toDate" ngbDatepicker #f="ngbDatepicker">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary calendar" (click)="f.toggle()" type="button"></button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div class="cena-button">
+            <h5 style="margin-top: 8px;">Cena Po Datnu: {{car.pricePerDay}}e</h5>
+            <button class="btn btn-primary iznajmi" type="button" style="background-color: rgb(121, 145, 28);height: 30px;align-content: center;padding-bottom: 30px;" (click)="iznajmi()">Iznajmi</button>
+              </div>
+        </div>
+    </div>
+    <h1>Detalji</h1>
+    <hr>
+    <div class="table-responsive table-borderless">
+        <table class="table table-bordered" style="border: none;width: 70%;">
+            
+            <tbody>
+                <tr>
+                    <td>Tip: {{car.bodyTypeName}}</td>
+                    <td>Proizvodjac: {{car.manufacturerName}}</td>
+                    <td>Model: {{car.modelName}}</td>
+                </tr>
+                <tr>
+                    <td>Zapremina motora: {{car.engineVolume}}</td>
+                    <td>Snaga motora: {{car.enginePower}}</td>
+                    <td>Menjac: {{car.transmissionTypeName}}</td>
+                </tr>
+                <tr>
+                    <td>Broj vrata: {{car.doors}}</td>
+                    <td>Broj sedista: {{car.seats}}</td>
+                    <td>Pogon: {{car.driveTypeName}}</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Gorivo: {{car.fuelTypeName}}</td>
+                  <td>Broj brzina: {{car.gearNumber}}</td>
+                  
+              </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

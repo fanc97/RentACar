@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="">Rent Car</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="">Home <span class="sr-only">(current)</span></a>
+      </li>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="" routerLink="/signup" >Sign in</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="" routerLink="/login" >Log in</a>
+        </li>
+    </ul>
+  </div>
+</nav>
+<div class="register">
+  <div class="form">
+  <form [formGroup]="reactiveForm">
+    <h2>SIGN UP</h2>
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" name="name" class="form-control" id="name" formControlName="name">
+        <div *ngIf="reactiveForm.controls.name.errors && (reactiveForm.controls.name.touched || reactiveForm.controls.name.dirty)" style="color:red">
+            <div *ngIf="reactiveForm.hasError('required','name')">
+               Name is required
+            </div>
+            <div *ngIf="reactiveForm.hasError('pattern','name')">
+               Name is invalid format
+            </div>
+            <div *ngIf="reactiveForm.hasError('minlength','name')">
+               Name must be 3 characters long
+            </div>
+          </div>
+    </div>
+    <div class="form-group">
+        <label for="username">Username :</label>
+        <input type="text" class="form-control" id="username" formControlName="username" name="username">
+        <div *ngIf="reactiveForm.controls.username.errors && (reactiveForm.controls.username.touched || reactiveForm.controls.username.dirty)" style="color:red">
+          <div *ngIf="reactiveForm.hasError('required','username')">
+              Username  is required
+          </div>
+          <div *ngIf="reactiveForm.hasError('pattern','username')">
+              Username  is invalid format
+          </div>
+          <div *ngIf="reactiveForm.hasError('minlength','username')">
+              Username  must be 3 characters long
+          </div>
+        </div>
+      </div>
+    <div class="form-group">
+        <label for="password">Password :</label>
+        <input type="password" class="form-control" id="password" formControlName="password" name="password">
+        <div *ngIf="reactiveForm.controls.password.errors && (reactiveForm.controls.password.touched || reactiveForm.controls.password.dirty)" style="color:red">
+          <div *ngIf="reactiveForm.hasError('required','password')">
+            Password  is required
+          </div>
+          <div *ngIf="reactiveForm.hasError('pattern','password')">
+            Password  is invalid format
+          </div>
+          <div *ngIf="reactiveForm.hasError('minlength','password')">
+            Password  must be 8 characters long
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+          <label for="file">File</label>
+          <input type="file" class="form-control" id="file" style="height: 100%;" (change)="onSelectFile($event)">
+      </div>
+      <button type="submit" class="btn btn-primary"(click)="saveForm(reactiveForm)" >Submit</button>
+</form>
+  </div>
+</div>
